@@ -13,23 +13,27 @@ function getJokes(e) {
   
   // fetch data
   xhr.onload = function() {
-
     if(this.status === 200) {
       // assign variable 'response' to the data returned from API
       const response = JSON.parse(this.responseText);
+
+      // initialize data by setting variable 'output' to an empty string
+      let output = '';
+
+      if(response.type === 'success') {
+        // loop though and output each joke ('value' is required by api)
+        response.value.forEach(function(joke) {
+          output += `<li>${joke.joke}</li>`
+        });
+      } else {
+        output += '<li>something went wrong</li>';
+      }
+      // add each joke to an unordered list with a class of 'jokes'
+      document.querySelector('.jokes').innerHTML = output;
     }
-
-    // initialize data by setting variable 'output' to an empty string
-    let output = '';
-
-    if(response.type === 'success') {
-      response.value.forEach(function(joke) {
-        output += `<li>${joke.joke}</li>`
-      });
-    } else {
-      output += '<li>something went wrong</li>'
-    }
-
-    preventDefault(); // prevent form submission
   }
+  xhr.send();
+  
+  // prevent form submission
+  e.preventDefault(); 
 }
