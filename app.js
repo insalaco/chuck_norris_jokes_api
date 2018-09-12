@@ -10,4 +10,13 @@ function getJokes(e) {
 
   // pass in the variable 'number'
   xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true);
+  
+  // fetch data
+  xhr.onload = function() {
+
+    if(this.status === 200) {
+      // assign variable 'response' to the data returned from API
+      const response = JSON.parse(this.responseText);
+    }
+  }
 }
