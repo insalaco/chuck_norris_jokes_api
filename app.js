@@ -19,6 +19,9 @@ function getJokes(e) {
       const response = JSON.parse(this.responseText);
     }
 
+    // initialize data by setting variable 'output' to an empty string
+    let output = '';
+
     preventDefault(); // prevent form submission
   }
 }
