@@ -18,5 +18,7 @@ function getJokes(e) {
       // assign variable 'response' to the data returned from API
       const response = JSON.parse(this.responseText);
     }
+
+    preventDefault(); // prevent form submission
   }
 }
